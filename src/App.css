@@ -1,0 +1,22 @@
+/* Hide scrollbar during active transition */
+body.is-transitioning {
+  overflow: hidden;
+}
+
+/* Professional link hover state used in Header/Footer */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #281464;
+  transition: width 0.3s ease;
+}
+.link-underline:hover::after {
+  width: 100%;
+}
