@@ -17,7 +17,8 @@ interface ServiceItem {
   title: string;
   image: string;
   icon: string;
-  slug: string; // Added to connect to routes
+  slug: string;
+  description: string; // Added for SEO descriptions
   featured?: boolean;
 }
 
@@ -25,53 +26,85 @@ const services: ServiceItem[] = [
   { 
     id: "01", 
     category: "Development", 
-    title: "High-Converting Websites", 
+    title: "Custom Website Design & Development Services", 
     image: webImg, 
     icon: "https://cdn-icons-png.flaticon.com/512/1005/1005141.png",
-    slug: "websites" 
+    slug: "websites",
+    description: "Professional responsive website design and development services that drive conversions. Our expert web developers create SEO-friendly, mobile-optimized websites with fast loading speeds and user-friendly interfaces. Get a custom website built with modern technologies like React, WordPress, and e-commerce platforms." 
   },
   { 
     id: "02", 
     category: "Development", 
-    title: "E-Commerce Platforms", 
+    title: "E-Commerce Development & Online Store Solutions", 
     image: ecommerceImg, 
     icon: "https://cdn-icons-png.flaticon.com/512/3081/3081559.png",
-    slug: "ecommerce" 
+    slug: "ecommerce",
+    description: "Build a profitable online store with our e-commerce website development services. We specialize in Shopify, WooCommerce, and Magento development with secure payment gateways, inventory management, and shopping cart optimization. Increase sales with conversion-focused e-commerce design."
   },
   { 
     id: "03", 
     category: "Development", 
-    title: "Custom Applications", 
+    title: "Custom Web & Mobile App Development", 
     image: appImg, 
     icon: "https://cdn-icons-png.flaticon.com/512/2920/2920277.png",
-    slug: "applications" 
+    slug: "applications",
+    description: "Transform your business with custom web application and mobile app development services. Our software developers create scalable SaaS platforms, progressive web apps (PWA), iOS and Android apps with cloud integration, real-time data sync, and enterprise-grade security."
   },
   { 
     id: "04", 
     category: "Marketing", 
-    title: "Digital Marketing", 
+    title: "Digital Marketing & SEO Services", 
     image: webImg, 
     icon: "https://cdn-icons-png.flaticon.com/512/3771/3771463.png", 
     featured: true,
-    slug: "digital-marketing" 
+    slug: "digital-marketing",
+    description: "Grow your business with data-driven digital marketing services. We offer SEO (Search Engine Optimization), PPC advertising (Google Ads, Facebook Ads), social media marketing, content marketing, and email campaigns. Our digital marketing agency delivers measurable ROI and increased online visibility."
   },
   { 
     id: "05", 
     category: "Branding", 
-    title: "Brand Identity Systems", 
+    title: "Brand Identity Design & Corporate Branding", 
     image: ecommerceImg, 
     icon: "https://cdn-icons-png.flaticon.com/512/3242/3242257.png",
-    slug: "branding-design" 
+    slug: "branding-design",
+    description: "Create a memorable brand identity with our professional branding services. From logo design to complete brand strategy, we develop cohesive visual identities including brand guidelines, packaging design, business cards, and marketing collateral that elevate your company's image."
   },
 ];
 
 const Services: React.FC = () => {
+  // Schema.org Service structured data
+  const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": services.map((service, index) => ({
+      "@type": "Service",
+      "position": index + 1,
+      "name": service.title,
+      "description": service.description,
+      "provider": {
+        "@type": "Organization",
+        "name": "AdwikIndia",
+        "url": "https://adwikindia.com"
+      },
+      "areaServed": "IN",
+      "serviceType": service.category
+    }))
+  };
+
   return (
     <section
       className="relative py-24 overflow-hidden bg-[var(--bg-main)]"
+      itemScope
+      itemType="https://schema.org/Service"
     >
+      {/* Structured Data */}
+      <script 
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
+      />
+      
       {/* Background Glow */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] blur-[160px] rounded-full pointer-events-none opacity-20 bg-[var(--teal)]" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] blur-[160px] rounded-full pointer-events-none opacity-20 bg-[var(--teal)]" aria-hidden="true" />
 
       <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-6 relative z-10">
         {/* HEADER - Eye-Catching & Beautiful */}
@@ -91,7 +124,7 @@ const Services: React.FC = () => {
 
           <h2 className="services-reveal text-[2.5rem] md:text-[4rem] font-black leading-[1.05] text-[var(--text-main)] mb-6 relative">
             <span className="inline-block hover-word">
-              {"Revenue-Driven".split("").map((char, i) => (
+              {"Professional".split("").map((char, i) => (
                 <span
                   key={i}
                   className="inline-block transition-all duration-300 hover:-translate-y-2 cursor-default"
@@ -103,7 +136,7 @@ const Services: React.FC = () => {
             </span>
             {" "}
             <span className="inline-block hover-word">
-              {"Digital".split("").map((char, i) => (
+              {"Web".split("").map((char, i) => (
                 <span
                   key={i}
                   className="inline-block transition-all duration-300 hover:-translate-y-2 cursor-default"
@@ -115,7 +148,7 @@ const Services: React.FC = () => {
             </span>
             <br />
             <span className="bg-gradient-to-r from-[var(--brand-orange)] via-[var(--teal)] to-[var(--brand-orange)] bg-clip-text text-transparent italic font-serif font-medium inline-block hover-word">
-              {"Growth Solutions".split("").map((char, i) => (
+              {"Design & Development Services".split("").map((char, i) => (
                 <span
                   key={i}
                   className="inline-block transition-all duration-300 hover:-translate-y-2 hover:scale-110 cursor-default"
@@ -131,19 +164,19 @@ const Services: React.FC = () => {
           </h2>
 
           <p className="services-reveal mt-8 max-w-2xl mx-auto text-lg text-[var(--text-secondary)] leading-relaxed">
-            From <strong className="text-[var(--brand-orange)]">scalable platforms</strong> to <strong className="text-[var(--teal)]">high-ROI marketing systems</strong>, we engineer digital ecosystems that convert.
+            Leading <strong className="text-[var(--brand-orange)]">website design company</strong> and <strong className="text-[var(--teal)]">digital marketing agency</strong> offering custom web development, SEO services, e-commerce solutions, and mobile app development. Transform your online presence with our expert team.
           </p>
 
-          {/* Floating badges */}
+          {/* Trust badges */}
           <div className="services-reveal flex flex-wrap justify-center gap-4 mt-8">
             <span className="px-6 py-2 rounded-full bg-[var(--brand-orange)]/10 border border-[var(--brand-orange)]/20 text-[var(--brand-orange)] text-xs font-bold uppercase tracking-wider hover:scale-105 transition-transform cursor-default">
-              🚀 Fast Delivery
+              🚀 100+ Projects Delivered
             </span>
             <span className="px-6 py-2 rounded-full bg-[var(--teal)]/10 border border-[var(--teal)]/20 text-[var(--teal)] text-xs font-bold uppercase tracking-wider hover:scale-105 transition-transform cursor-default">
-              💎 Premium Quality
+              ⭐ 5-Star Rated Agency
             </span>
             <span className="px-6 py-2 rounded-full bg-[var(--brand-orange)]/10 border border-[var(--brand-orange)]/20 text-[var(--brand-orange)] text-xs font-bold uppercase tracking-wider hover:scale-105 transition-transform cursor-default">
-              ⚡ High ROI
+              ⚡ 2X Average ROI
             </span>
           </div>
         </div>
@@ -253,9 +286,12 @@ const Services: React.FC = () => {
                          style={{ color: service.featured ? "var(--teal)" : "var(--brand-orange)" }}>
                         {service.category}
                       </p>
-                      <h3 className="font-bold text-xl md:text-2xl leading-tight text-[var(--text-main)] group-hover:text-[var(--brand-orange)] transition-colors duration-300">
+                      <h3 className="font-bold text-xl md:text-2xl leading-tight text-[var(--text-main)] group-hover:text-[var(--brand-orange)] transition-colors duration-300 mb-4">
                         {service.title}
                       </h3>
+                      <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-3">
+                        {service.description}
+                      </p>
                     </div>
 
                     {/* IMAGE */}
