@@ -54,15 +54,15 @@ const tools = [
 
   // Marketing & CMS
   { name: "WordPress", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg", category: "cms" },
-  { name: "Elementor", icon: "https://cdn.worldvectorlogo.com/logos/elementor-1.svg", category: "cms" },
+  { name: "Elementor", icon: "/elementor.png", category: "cms" },
   { name: "Shopify", icon: "https://cdn.worldvectorlogo.com/logos/shopify.svg", category: "cms" },
   { name: "WooCommerce", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/woocommerce/woocommerce-original.svg", category: "cms" },
   { name: "Magento", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/magento/magento-original.svg", category: "cms" },
   { name: "Stripe", icon: "https://cdn.worldvectorlogo.com/logos/stripe-4.svg", category: "marketing" },
-  { name: "PayPal", icon: "https://cdn.worldvectorlogo.com/logos/paypal-2.svg", category: "marketing" },
-  { name: "Google Ads", icon: "https://cdn.worldvectorlogo.com/logos/google-ads-1.svg", category: "marketing" },
+  { name: "PayPal", icon: "/paypal-logo.png", category: "marketing" },
+  { name: "Google Ads", icon: "/google ads.jpg", category: "marketing" },
   { name: "Google", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg", category: "marketing" },
-  { name: "Meta", icon: "https://cdn.worldvectorlogo.com/logos/meta-1.svg", category: "marketing" },
+  { name: "Meta", icon: "/meta.png", category: "marketing" },
   { name: "Instagram", icon: "https://cdn.worldvectorlogo.com/logos/instagram-2016-5.svg", category: "marketing" },
   { name: "Slack", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg", category: "tools" },
   { name: "Discord", icon: "https://cdn.worldvectorlogo.com/logos/discord-6.svg", category: "tools" },
@@ -158,7 +158,7 @@ const TechSection = () => {
 
           <p
             className="text-xs sm:text-sm text-center relative z-10 font-semibold transition-all duration-300"
-            style={{ color: "var(--text-muted)" }}
+            style={{ color: "var(--text-secondary)" }}
           >
             {tool.name}
           </p>

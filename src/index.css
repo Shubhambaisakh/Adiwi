@@ -85,34 +85,98 @@
 }
 
 /* =================================================
-   DARK THEME - Premium Dark Orange
+   DARK THEME - Premium Deep Dark with Orange Glow
    ================================================= */
 [data-theme="dark"] {
-  --bg-main: #2C1810;           /* Deep Warm Brown */
-  --bg-secondary: #3D2817;      /* Medium Brown */
-  --bg-tertiary: #4A3420;       /* Lighter Brown */
+  --bg-main: #0A0A0F;           /* Deep Space Black */
+  --bg-secondary: #111118;      /* Slightly lighter dark */
+  --bg-tertiary: #1A1A24;       /* Card dark base */
 
-  --card-bg: #3D2817;
-  --card-hover: linear-gradient(135deg, #4A3420 0%, #5D4E37 100%);
+  --card-bg: #13131A;           /* Dark card background */
+  --card-hover: linear-gradient(135deg, #1A1A24 0%, #1F1F2E 100%);
 
-  --text-main: #FFF5EE;         /* Cream White */
-  --text-secondary: #FFD4BA;    /* Light Peach */
-  --text-muted: #B8956A;        /* Muted Gold */
+  --text-main: #FFF5E6;         /* Warm Cream White - Main text */
+  --text-secondary: #F5E6D3;    /* Light Peach Cream - Secondary text */
+  --text-muted: #D4C4B0;        /* Soft Tan - Muted text */
 
-  --border-color: #5D4E37;      /* Medium Brown */
-  --border-light: #4A3420;      /* Lighter Brown */
+  --border-color: #2A2535;      /* Subtle dark border */
+  --border-light: #1E1B2E;      /* Even lighter border */
 
-  --shadow-sm: 0 2px 12px rgba(255, 140, 66, 0.3);
-  --shadow-md: 0 10px 30px rgba(255, 140, 66, 0.4);
-  --shadow-lg: 0 20px 50px rgba(255, 140, 66, 0.5);
-  --shadow-glow: 0 0 40px rgba(255, 140, 66, 0.6);
+  --shadow-sm: 0 2px 12px rgba(255, 140, 66, 0.15);
+  --shadow-md: 0 8px 32px rgba(255, 140, 66, 0.2);
+  --shadow-lg: 0 20px 60px rgba(255, 140, 66, 0.25);
+  --shadow-glow: 0 0 50px rgba(255, 140, 66, 0.5);
 
-  --nav-bg: rgba(44, 24, 16, 0.98);
-  --nav-sticky: rgba(61, 40, 23, 0.95);
-  
-  /* Premium buttons for dark mode */
-  --btn-primary: linear-gradient(135deg, #FF8C42 0%, #FFA07A 100%);
-  --btn-primary-hover: linear-gradient(135deg, #FFA07A 0%, #FFB088 100%);
+  --nav-bg: rgba(10, 10, 15, 0.97);
+  --nav-sticky: rgba(10, 10, 15, 0.98);
+
+  --btn-primary: linear-gradient(135deg, #FF8C42 0%, #FF6B1A 100%);
+  --btn-primary-hover: linear-gradient(135deg, #FF6B1A 0%, #FF8C42 100%);
+
+  --cyan: #FF8C42;
+  --teal: #FF7F50;
+}
+
+/* Dark mode body background with ambient glow */
+[data-theme="dark"] body {
+  background: #0A0A0F;
+}
+
+[data-theme="dark"] body::before {
+  background:
+    radial-gradient(circle at 15% 30%, rgba(255, 140, 66, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 85% 70%, rgba(255, 100, 50, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(120, 80, 255, 0.03) 0%, transparent 60%);
+}
+
+/* Dark mode card glow on hover */
+[data-theme="dark"] .card:hover {
+  box-shadow: 0 20px 60px rgba(255, 140, 66, 0.15), 0 0 0 1px rgba(255, 140, 66, 0.1);
+}
+
+/* Dark mode glass effect */
+[data-theme="dark"] .glass-effect {
+  background: rgba(19, 19, 26, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 140, 66, 0.15);
+}
+
+/* Dark mode dot grid pattern overlay */
+[data-theme="dark"] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle, rgba(255,140,66,0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+/* Dark mode text color overrides - Ensure visibility */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+  color: var(--text-main) !important;
+}
+
+[data-theme="dark"] p {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] small,
+[data-theme="dark"] .text-muted {
+  color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] span {
+  color: inherit;
 }
 
 *,
@@ -121,11 +185,38 @@
   box-sizing: border-box;
 }
 
-* {
+a,
+button,
+input,
+textarea,
+select,
+.card,
+.btn,
+.mega-item,
+.nav-link-custom,
+.hover-lift,
+.link-premium,
+[data-theme] {
   transition: background-color 0.3s ease,
               color 0.3s ease,
               border-color 0.3s ease,
               box-shadow 0.3s ease;
+}
+
+/* Hide default cursor on desktop to make the custom cursor feel ultra-responsive and premium */
+@media (min-width: 768px) {
+  html,
+  body,
+  a,
+  button,
+  .card,
+  .btn,
+  .mega-item,
+  .nav-link-custom,
+  .hover-lift,
+  .link-premium {
+    cursor: none !important;
+  }
 }
 
 body {
@@ -744,8 +835,4 @@ html {
   transition: transform 0.3s ease;
 }
 
-/* Remove all GSAP-related transforms */
-[style*="transform: translate3d"],
-[style*="transform: matrix"] {
-  transform: none !important;
-}
+/* Smooth scrolling and transitions handled by targeted classes */

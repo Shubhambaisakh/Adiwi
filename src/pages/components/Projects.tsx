@@ -320,30 +320,20 @@ const Projects: React.FC = () => {
 const ProjectCard: React.FC<{ item: WorkItem }> = ({ item }) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
+  // Removed 3D tilt to fix lag - simple hover only
   const handleMove = (e: React.MouseEvent) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-
-    gsap.to(cardRef.current, {
-      rotateY: x * 10,
-      rotateX: -y * 10,
-      transformPerspective: 1000,
-      duration: 0.4,
-      ease: "power3.out",
-    });
+    // Disabled for performance
   };
 
   const reset = () => {
-    gsap.to(cardRef.current, { rotateX: 0, rotateY: 0, duration: 0.6, ease: "power2.out" });
+    // Disabled for performance
   };
 
   return (
     <div className="perspective-1000 h-full" onMouseMove={handleMove} onMouseLeave={reset}>
       <motion.div
         ref={cardRef}
-        className="group relative rounded-[2.5rem] p-8 flex flex-col h-full min-h-[560px] border transition-all duration-500 shadow-2xl bg-white dark:bg-gradient-to-br dark:from-[#4A3420] dark:to-[#3D2817] border-[var(--border-light)] hover:border-[var(--brand-orange)]/35 backdrop-blur-lg hover:shadow-[0_25px_60px_-10px_rgba(255,140,66,0.12)] overflow-visible"
+        className="group relative rounded-[2.5rem] p-8 flex flex-col h-full min-h-[560px] border-2 transition-all duration-500 shadow-xl bg-white dark:bg-gradient-to-br dark:from-[#1a1a1a] dark:to-[#0d0d0d] border-[#FFE5D9] dark:border-[#333] hover:border-[var(--brand-orange)] dark:hover:border-[var(--brand-orange)]/60 backdrop-blur-lg hover:shadow-[0_20px_60px_-10px_rgba(255,140,66,0.25)] dark:hover:shadow-[0_25px_60px_-10px_rgba(255,140,66,0.3)] hover:-translate-y-1 overflow-visible"
       >
         {/* Dynamic Glow Layer */}
         <div className={`absolute -inset-4 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-700 pointer-events-none rounded-[2.5rem]`}></div>
@@ -359,15 +349,15 @@ const ProjectCard: React.FC<{ item: WorkItem }> = ({ item }) => {
         {/* CARD TOP INFO */}
         <div className="mb-6">
           <div className="flex justify-between items-start mb-4">
-            <span className="text-[10px] uppercase tracking-[0.25em] font-black text-[var(--brand-orange)]">
+            <span className="text-[11px] uppercase tracking-[0.25em] font-black text-[var(--brand-orange)] bg-[var(--brand-orange)]/10 px-4 py-2 rounded-xl">
               {item.category}
             </span>
           </div>
           
-          <h3 className="text-2xl font-black leading-tight text-[var(--text-main)] mb-3 group-hover:text-[var(--brand-orange)] transition-colors duration-300 tracking-tight min-h-[60px] mt-2">
+          <h3 className="text-[1.75rem] font-black leading-[1.15] text-[#1a1a1a] dark:text-[#FFF5E6] mb-4 group-hover:text-[var(--brand-orange)] transition-colors duration-300 tracking-tight min-h-[60px] mt-2">
             {item.title}
           </h3>
-          <p className="text-[15px] font-medium opacity-80 line-clamp-2 leading-relaxed text-[var(--text-secondary)] min-h-[44px]">
+          <p className="text-[15px] font-semibold opacity-85 dark:opacity-90 line-clamp-2 leading-relaxed text-[#4a4a4a] dark:text-[#D4C4B0] min-h-[44px]">
             {item.description}
           </p>
         </div>
@@ -402,8 +392,8 @@ const ProjectCard: React.FC<{ item: WorkItem }> = ({ item }) => {
           </div>
 
           {/* Year Badge - Bottom Left */}
-          <div className="absolute bottom-4 left-4 px-4 py-2 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-            <span className="text-white font-black text-sm">2024</span>
+          <div className="absolute bottom-4 left-4 px-4 py-2 rounded-xl bg-white/10 dark:bg-white/20 backdrop-blur-md border border-white/20 dark:border-white/30 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+            <span className="text-white font-black text-sm drop-shadow-lg">2024</span>
           </div>
 
           {/* Sparkle - Top Right */}

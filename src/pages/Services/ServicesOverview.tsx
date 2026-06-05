@@ -37,9 +37,27 @@ const ServicesOverview: React.FC = () => {
   const glowRef = useRef<HTMLDivElement>(null);
      // Enquiry Popup State
   const [open, setOpen] = useState(false);
-  // Set page title for SEO
+  // Set page title, description, and keywords for SEO
   useEffect(() => {
-    document.title = "Unified Growth Ecosystem | Digital Engineering & Strategy | AdwikIndia";
+    document.title = "Premium Digital Marketing & Web Development Services | AdwikIndia";
+    
+    // Dynamically insert/update meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', "Scale your business with AdwikIndia's premium digital engineering services. We build custom MERN stack websites, high-performance mobile apps, ROI-driven Meta & Google Ads campaigns, and advanced SEO strategies to drive conversions.");
+
+    // Dynamically insert/update meta keywords
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (!metaKeywords) {
+      metaKeywords = document.createElement('meta');
+      metaKeywords.setAttribute('name', 'keywords');
+      document.head.appendChild(metaKeywords);
+    }
+    metaKeywords.setAttribute('content', 'digital marketing agency, web development company, MERN stack developers, performance marketing, Google Ads, Meta Ads, SEO optimization services, mobile app development, UI/UX design agency, AdwikIndia');
   }, []);
 
   // GSAP animations for modern effects
@@ -124,32 +142,178 @@ const ServicesOverview: React.FC = () => {
   };
 
   const services = [
-    { title: "Websites", icon: <FileCode2 size={30} />, path: "/services/websites", desc: "MERN stack portals optimized for sub-second enterprise velocity." },
-    { title: "Performance Marketing", icon: <Target size={30} />, path: "/services/digital-marketing", desc: "ROI-centric media buying that lowers CPA and increases LTV." },
-    { title: "E-Commerce", icon: <ShoppingBag size={30} />, path: "/services/ecommerce", desc: "Headless commerce systems for high-volume technical trade." },
-    { title: "App Development", icon: <Smartphone size={30} />, path: "/services/applications", desc: "Native & Cross-platform solutions designed for user retention." },
-    { title: "Semantic SEO", icon: <SearchCheck size={30} />, path: "/services/seo", desc: "Outrank competitors with data-driven on-page & off-page engineering." },
-    { title: "Growth Branding", icon: <Palette size={30} />, path: "/services/branding-design", desc: "Visual identity systems built on psychological trust triggers." }
+    { 
+      title: "Custom Web Development & MERN Stack Engineering", 
+      icon: <FileCode2 size={30} />, 
+      path: "/services/websites", 
+      desc: "Get lightning-fast, custom websites and web portals engineered with React, Next.js, and Node.js. We focus on sub-second loading speeds, high-performance web architecture, and clean, responsive UI/UX to ensure maximum user retention and conversions." 
+    },
+    { 
+      title: "Performance Paid Ads & ROI-Driven Marketing", 
+      icon: <Target size={30} />, 
+      path: "/services/digital-marketing", 
+      desc: "Scale your revenue with high-performing, data-driven advertising campaigns. We design and manage target-oriented Google Ads, Meta Ads (Facebook & Instagram), and LinkedIn Ads engineered to lower customer acquisition costs (CPA) and boost lifetime value (LTV)." 
+    },
+    { 
+      title: "Enterprise E-Commerce & Headless Commerce Solutions", 
+      icon: <ShoppingBag size={30} />, 
+      path: "/services/ecommerce", 
+      desc: "Launch high-converting digital storefronts. We build secure, custom e-commerce web applications, Shopify setups, and headless commerce architectures optimized to handle massive transaction volumes smoothly with zero friction." 
+    },
+    { 
+      title: "Mobile App Development Services (iOS & Android Apps)", 
+      icon: <Smartphone size={30} />, 
+      path: "/services/applications", 
+      desc: "Bring your product to mobile viewports with native and cross-platform mobile app development. Using React Native and Flutter, we deploy highly responsive, secure, and intuitive applications designed to keep users engaged and active." 
+    },
+    { 
+      title: "Advanced Search Engine Optimization (SEO) Services", 
+      icon: <SearchCheck size={30} />, 
+      path: "/services/seo", 
+      desc: "Dominate search results and drive consistent organic traffic. Our semantic SEO approach features code-level optimization, site speed tuning, high-authority backlink building, and search intent targeting to help you outrank top competitors." 
+    },
+    { 
+      title: "Corporate UI/UX Design & Brand Identity Services", 
+      icon: <Palette size={30} />, 
+      path: "/services/branding-design", 
+      desc: "Establish trust and authority in your niche. We design stunning corporate branding assets, logo designs, high-converting landing pages, and intuitive user experiences built on psychological trust triggers that convert visits into leads." 
+    }
   ];
 
   const pricingPlans = [
-    { t: "Establish", p: "₹19k/mo", f: ["Technical SEO", "5 Strategic Pages", "Lead Tracking", "99.9% Hosting"] },
-    { t: "Growth Pro", p: "₹49k/mo", f: ["MERN/Next.js Portal", "Ads Management", "ROI Dashboards", "A/B Testing"], h: true },
-    { t: "Enterprise", p: "Custom", f: ["Headless Commerce", "Omnichannel", "Dedicated PM", "PR Synergy"] }
+    { 
+      t: "Establish Plan", 
+      p: "₹19k/mo", 
+      f: ["Advanced Technical SEO Audits", "5 Keyword-Targeted Pages", "Lead Capture & Conversion Tracking", "99.9% Cloud Hosting & SSL", "Weekly Search Ranking Reports"] 
+    },
+    { 
+      t: "Growth Pro Plan", 
+      p: "₹49k/mo", 
+      f: ["Custom React / Next.js Development", "ROI-Driven Paid Ads Management", "Custom conversion dashboards", "A/B Test Funnel Optimizations", "Priority Developer Support"], 
+      h: true 
+    },
+    { 
+      t: "Enterprise Solutions", 
+      p: "Custom Quote", 
+      f: ["Headless E-commerce & CRM Integration", "Omnichannel Marketing Campaigns", "Dedicated Project Manager & Architect", "PR Synergy & Authority Backlinking", "24/7 Server Monitor & Incident Support"] 
+    }
   ];
 
   const faqItems = [
-    { q: "How do you measure service ROI?", a: "We establish baseline KPIs during discovery (organics, CAC, LTV) and track every deliverable against a live performance dashboard. If the metric isn't moving, the strategy is iterating." },
-    { q: "Can services be integrated?", a: "Absolutely. 85% of our clients integrate Development with Performance Marketing for maximum ecosystem synergy. Data flows seamlessly between code and conversion goals." },
-    { q: "What industries do you dominate?", a: "We have deep engineering expertise in FinTech, Real Estate, E‑Commerce, Healthcare, and SaaS. We normalize for industry velocity." }
+    { 
+      q: "How do you measure service ROI (Return on Investment)?", 
+      a: "We align all projects with clear business outcomes, establishing baseline KPIs (organic traffic growth, customer acquisition costs, lead conversion rate) during discovery. Through our real-time conversion dashboard, we monitor progress continuously, ensuring every marketing dollar and line of code translates into measurable business growth." 
+    },
+    { 
+      q: "Can we integrate web development with digital marketing services?", 
+      a: "Absolutely. Over 85% of our clients combine custom website engineering with performance marketing and SEO. Building web apps and managing ad campaigns under one roof ensures that your landing pages are fully optimized for speed, tracking, and user experience, resulting in a higher conversion rate." 
+    },
+    { 
+      q: "What industries does AdwikIndia specialize in?", 
+      a: "We possess deep technical and marketing expertise across highly competitive niches, including FinTech, Real Estate, Healthcare, SaaS, and high-volume E-Commerce. Our strategies are customized to match the unique customer behaviors and compliance standards of each sector." 
+    },
+    { 
+      q: "How does semantic SEO help in outranking competitors?", 
+      a: "Semantic SEO focuses on targeting topics rather than just single keywords. By designing search-intent-driven content clusters, utilizing proper HTML5 tags, and configuring JSON-LD schemas, we help search engine crawlers (Google, Bing, and AI-driven systems like Perplexity or ChatGPT Search) understand the contextual relevance and depth of your website, boosting rankings." 
+    },
+    { 
+      q: "What technologies do you use for mobile app and website development?", 
+      a: "We specialize in modern, high-performance tech stacks, including React.js, Next.js, Node.js, MongoDB, React Native, and Flutter. This allows us to deliver ultra-fast, cross-platform apps and headless web portals that offer desktop-level performance, clean design, and sub-second load times." 
+    },
+    { 
+      q: "Do you provide custom packages for startups and enterprises?", 
+      a: "Yes, we offer flexible growth packages tailored to both early-stage startups looking to establish market presence and large enterprises needing robust web portals or custom automation software. Our plans scale with your goals to ensure optimal ROI at every growth stage." 
+    }
   ];
 
   return (
-    <div
+    <main
       ref={pageRef}
       className="font-sans transition-colors duration-300 overflow-x-hidden"
       style={{ backgroundColor: "var(--bg-main)", color: "var(--text-main)" }}
     >
+      {/* =================================================
+          SEO JSON-LD SCHEMA FOR SERVICES
+      ================================================= */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "AdwikIndia",
+            "url": "https://adwikindia.com",
+            "telephone": "+91-9174360955",
+            "logo": "https://adwikindia.com/Adwikindia.svg",
+            "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1400&auto=format&fit=crop",
+            "priceRange": "$$",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bhopal",
+              "addressRegion": "Madhya Pradesh",
+              "addressCountry": "India"
+            },
+            "sameAs": [
+              "https://github.com/amitkhowse/AdwikIndia"
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Digital Services Catalog",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Custom Web Development & MERN Stack Engineering",
+                    "description": "Get lightning-fast, custom websites and web portals engineered with React, Next.js, and Node.js. We focus on sub-second loading speeds, high-performance web architecture, and clean, responsive UI/UX to ensure maximum user retention and conversions."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Performance Paid Ads & ROI-Driven Marketing",
+                    "description": "Scale your revenue with high-performing, data-driven advertising campaigns. We design and manage target-oriented Google Ads, Meta Ads (Facebook & Instagram), and LinkedIn Ads engineered to lower customer acquisition costs (CPA) and boost lifetime value (LTV)."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Enterprise E-Commerce & Headless Commerce Solutions",
+                    "description": "Launch high-converting digital storefronts. We build secure, custom e-commerce web applications, Shopify setups, and headless commerce architectures optimized to handle massive transaction volumes smoothly with zero friction."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Mobile App Development Services (iOS & Android Apps)",
+                    "description": "Bring your product to mobile viewports with native and cross-platform mobile app development. Using React Native and Flutter, we deploy highly responsive, secure, and intuitive applications designed to keep users engaged and active."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Advanced Search Engine Optimization (SEO) Services",
+                    "description": "Dominate search results and drive consistent organic traffic. Our semantic SEO approach features code-level optimization, site speed tuning, high-authority backlink building, and search intent targeting to help you outrank top competitors."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Corporate UI/UX Design & Brand Identity Services",
+                    "description": "Establish trust and authority in your niche. We design stunning corporate branding assets, logo designs, high-converting landing pages, and intuitive user experiences built on psychological trust triggers that convert visits into leads."
+                  }
+                }
+              ]
+            }
+          }),
+        }}
+      />
+
       {/* 1. HERO SECTION (SEO optimized H1) */}
       <section
         ref={heroRef}
@@ -171,10 +335,10 @@ const ServicesOverview: React.FC = () => {
               The Growth Matrix 2026
             </span>
           </div>
-          <h1 className="hero-item text-6xl lg:text-9xl font-black mb-8 leading-tight tracking-tighter">
-            Digital Engineering <br />{" "}
-            <span style={{ color: "var(--teal)" }} className="italic font-serif">
-              & strategy.
+          <h1 className="hero-item text-5xl lg:text-8xl font-black mb-8 leading-tight tracking-tighter uppercase">
+            Enterprise Digital Engineering <br />{" "}
+            <span style={{ color: "var(--teal)" }} className="italic font-serif normal-case">
+              & custom growth strategy.
             </span>
           </h1>
           <p
@@ -559,7 +723,7 @@ const ServicesOverview: React.FC = () => {
           </button>
         </div>
       </section>
-    </div>
+    </main>
   );
 };
 

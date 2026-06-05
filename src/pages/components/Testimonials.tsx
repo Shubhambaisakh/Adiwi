@@ -142,7 +142,7 @@ const TestimonialCard: React.FC<{ item: Testimonial }> = ({ item }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="group relative rounded-[2rem] p-8 border transition-all duration-500 h-[480px] flex flex-col bg-white dark:bg-gradient-to-br dark:from-[#4A3420] dark:to-[#3D2817] border-[var(--border-light)] shadow-xl hover:shadow-[0_25px_60px_-10px_rgba(255,140,66,0.15)] hover:border-[var(--brand-orange)]/40 hover:-translate-y-2 overflow-hidden"
+      className="group relative rounded-[2rem] p-8 border transition-all duration-500 h-[480px] flex flex-col bg-white dark:bg-[#13131A] border-[var(--border-light)] dark:border-[#2A2535] shadow-xl hover:shadow-[0_25px_60px_-10px_rgba(255,140,66,0.15)] dark:hover:shadow-[0_25px_60px_-10px_rgba(255,140,66,0.25)] hover:border-[var(--brand-orange)]/40 hover:-translate-y-2 overflow-hidden"
     >
       {/* Gradient Glow on Hover */}
       <div className="absolute inset-0 bg-gradient-to-br from-[var(--brand-orange)]/0 to-[var(--brand-coral)]/0 group-hover:from-[var(--brand-orange)]/5 group-hover:to-[var(--brand-coral)]/5 transition-all duration-700 pointer-events-none rounded-[2rem]" />
